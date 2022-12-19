@@ -15,27 +15,18 @@ public class SoftUni {
 
 
     public int getCapacity() {
-        return capacity;
+        return this.capacity;
     }
 
     public int getCount() {
-        return data.size();
+        return this.data.size();
     }
 
     public String insert(Student student) {
         if (data.size() < capacity) {
-            for (Student student1 : this.data) {
-                if (!student1.getFirstName().equals(student.getFirstName())) {
-                    data.add(student);
-                    System.out.printf("Added student %s $s.", student.getFirstName(), student.getLastName());
-                } else {
-                    System.out.println("Student is already in the hall.");
-                }
-            }
-        } else {
-            System.out.println("The hall is full.");
+            this.data.add(student);
         }
-        return null;
+        return String.valueOf(this.student);
     }
 
     public String remove(Student student) {
@@ -58,6 +49,9 @@ public class SoftUni {
     }
 
     public String getStatistics() {
+
+
+
         return String.format("Hall size: {addedStudentsCount}");
 //        Student: {firstName} {lastName}, Best Course = {bestCourse}
 //        Student: {firstName} {lastName}, Best Couse = {bestCourse}

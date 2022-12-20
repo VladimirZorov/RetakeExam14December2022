@@ -5,8 +5,9 @@ import java.util.List;
 
 public class SoftUni {
 
-    private int capacity;
-    private List<Student> data;
+    public int capacity;
+    public List<Student> data;
+
 
     public SoftUni(int capacity) {
         this.capacity = capacity;
@@ -23,36 +24,39 @@ public class SoftUni {
     }
 
     public String insert(Student student) {
+
         if (data.size() < capacity) {
-            this.data.add(student);
+            if (!getStudent(student.firstName, student.lastName).equals(student)) {
+                data.add(student);
+                return String.format("Added student %s %s.", student.getFirstName(), student.getLastName());
+            } else {
+                return String.format("Student is already in the hall.");
+            }
         }
-        return String.valueOf(this.student);
+        return String.format("The hall is full.");
     }
 
     public String remove(Student student) {
-        for (Student student1 : this.data) {
-            if (!student1.getFirstName().equals(student.getFirstName())){
-                System.out.printf("Removed student %s %s.",student1.getFirstName(), student1.getLastName());
-                this.data.remove(student1);
+        for (int i = 0; i < data.size(); i++) {
+            if (!this.data.get(i).equals(student)) {
+                data.remove(student);
+                return String.format("Removed student %s %s.", student.getFirstName(), student.getLastName());
+
             } else {
-                System.out.println("Student not found.");
+                return String.format("Student not found.");
             }
         }
         return null;
     }
 
-
-
-    public String getStudent(String firstName, String lastName){
+    public String getStudent(String firstName, String lastName) {
 
         return firstName;
     }
 
     public String getStatistics() {
 
-
-
-        return String.format("Hall size: {addedStudentsCount}");
+        return String.format("Hall size: %d%n",data.size());
 //        Student: {firstName} {lastName}, Best Course = {bestCourse}
 //        Student: {firstName} {lastName}, Best Couse = {bestCourse}
 //        (…)"

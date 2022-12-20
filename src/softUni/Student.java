@@ -2,9 +2,9 @@ package softUni;
 
 public class Student {
 
-    private String firstName;
-    private String lastName;
-    private String bestCourse;
+    public String firstName;
+    public String lastName;
+    public String bestCourse;
 
     public Student(String firstName, String lastName, String bestCourse) {
         this.firstName = firstName;

@@ -25,8 +25,9 @@ public class NavyBattle {
 
         battlefield[submarineRow][submarineColl] = "-";
 
-        String command = scanner.nextLine();
+
         while (mineHit < 3 && batCruisersHit < 3) {
+            String command = scanner.nextLine();
             switch (command){
                 case "up":
                     submarineRow -= 1;
@@ -69,12 +70,12 @@ public class NavyBattle {
                     }
                     break;
             }
-            command = scanner.nextLine();
+
         }
 
         battlefield[submarineRow][submarineColl] = "S";
         if (batCruisersHit == 3) {
-            System.out.println("Mission accomplished, U-9 has destroyed all battle cruisers of the enemy!%n");
+            System.out.println("Mission accomplished, U-9 has destroyed all battle cruisers of the enemy!");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     System.out.print(battlefield[i][j]);

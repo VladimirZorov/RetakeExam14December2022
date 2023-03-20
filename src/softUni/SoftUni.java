@@ -26,11 +26,18 @@ public class SoftUni {
     public String insert(Student student) {
 
         if (data.size() < capacity) {
-            if (!getStudent(student.firstName, student.lastName).equals(student)) {
+            if (data.size() == 0) {
                 data.add(student);
                 return String.format("Added student %s %s.", student.getFirstName(), student.getLastName());
             } else {
-                return String.format("Student is already in the hall.");
+                for (int i = 0; i < data.size(); i++) {
+                    if (!this.data.get(i).equals(student)) {
+                        data.add(student);
+                        return String.format("Added student %s %s.", student.getFirstName(), student.getLastName());
+                    } else {
+                        return String.format("Student is already in the hall.");
+                    }
+                }
             }
         }
         return String.format("The hall is full.");
@@ -38,28 +45,30 @@ public class SoftUni {
 
     public String remove(Student student) {
         for (int i = 0; i < data.size(); i++) {
-            if (!this.data.get(i).equals(student)) {
+            if (this.data.get(i).equals(student)) {
                 data.remove(student);
                 return String.format("Removed student %s %s.", student.getFirstName(), student.getLastName());
-
-            } else {
-                return String.format("Student not found.");
             }
         }
-        return null;
+        return String.format("Student not found.");
     }
 
     public String getStudent(String firstName, String lastName) {
-
+        for (int i = 0; i < data.size(); i++) {
+            if (this.data.get(i).firstName.equals(firstName)){
+                return String.format(String.valueOf(this.data.get(i)));
+            }
+        }
         return firstName;
     }
 
     public String getStatistics() {
 
-        return String.format("Hall size: %d%n",data.size());
-//        Student: {firstName} {lastName}, Best Course = {bestCourse}
-//        Student: {firstName} {lastName}, Best Couse = {bestCourse}
-//        (…)"
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Hall size: %d", this.data.size())).append(System.lineSeparator());
+        for (Student student:this.data){
+            sb.append(String.format("Student: %s %s, Best Course = %s ",student.getFirstName(), student.getLastName(), student.getBestCourse())).append(System.lineSeparator());
+        }
+        return sb.toString().trim();
     }
 }
